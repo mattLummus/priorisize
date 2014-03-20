@@ -1,0 +1,68 @@
+extends ../shared/template
+
+block content
+  h1 Priorisize
+  .row
+    .small-6.columns
+      form#addTask
+        fieldset
+          legend Add Task
+          .row
+            .small-3.columns
+              label Workload
+              select#workload(name='workload')
+                option(value=1) Low
+                option(value=2) Medium
+                option(value=3) High
+            .small-3.columns
+              label Important?
+              select#importance(name='importance')
+                option(value=true) Yes
+                option(value=false) False
+            .small-6.columns
+              label End Date
+              input#endDate(type='date', name='end', required=true)
+            .small-3.columns
+          .row
+            .small-8.columns
+              input#description(type='text', placeholder='description', name='description')
+            .small-4.columns
+              button Submit
+    .small-6.columns
+      form#myTasks
+        fieldset
+          legend My Tasks
+          .row
+            .small-4.columns
+              label "By Priority (All)"
+              select#priority(name='priority')
+            .small-4.columns
+              label Root Family
+              select#rootFamily(name='rootFamily')
+            .small-4.columns
+              label Hybrid
+              select#hybrid(name='hybrid')
+  .row
+    .small-12.columns
+      #Sandbox
+        .row
+          .small-4.columns
+            div.bubble.size-5.green
+            div.bubble.size-4.green
+            div.bubble.size-3.green
+            div.bubble.size-2.green
+            div.bubble.size-1.green
+        .row
+          .small-4.columns
+            div.bubble.size-5.yellow
+            div.bubble.size-4.yellow
+            div.bubble.size-3.yellow
+            div.bubble.size-2.yellow
+            div.bubble.size-1.yellow
+        .row
+          .small-4.columns
+            div.bubble.size-5.red
+            div.bubble.size-4.red
+            div.bubble.size-3.red
+            div.bubble.size-2.red
+            div.bubble.size-1.red
