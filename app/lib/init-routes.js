@@ -16,7 +16,7 @@ function load(app, fn){
   var home = require('../routes/home');
 
   app.get('/', d, home.index);
+  app.get('/admin', d, home.admin);
   console.log('Routes Loaded');
   fn();
 }
-

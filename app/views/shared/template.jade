@@ -13,7 +13,7 @@ html(class='no-js', lang='en')
     nav.top-bar
       ul.title-area
         li.name
-          h1: a(href="/") The Title
+          h1: a(href="/")= title
         li.toggle-topbar.menu-icon
           a(href="#") Menu
 
@@ -31,7 +31,10 @@ html(class='no-js', lang='en')
 
     script(src='/js/vendor/jquery.js')
     script(src='/js/vendor/jquery-ui-1.10.4.custom.min.js')
+    script(src='/js/vendor/jquery-collision.min.js')
+    //script(src='/js/vendor/jquery-ui-draggable-collision.js')
     script(src='/js/vendor/foundation.min.js')
     script(src='/js/vendor/lodash.js')
     script(src='/js/vendor/moment.js')
     script(src='/js/source/main.js')
+    block scripts
