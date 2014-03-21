@@ -65,13 +65,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   $.ui.plugin.add( "draggable", "restraint", {
     create: function(event,ui){         handleInit   .call( this, event, ui ); },
     start: function(event,ui){ if( ! $(this).data("draggable").options.obstacle ) // if there are obstacles, we already handled both
-                               {        
+                               {
                                         handleStart  .call( this, event, ui );
                                }
                              } ,
     drag:  function(event,ui){ if( ! $(this).data("draggable").options.obstacle ) // if there are obstacles, we already handled both
-                               { 
-                                 return handleCollide.call( this, event, ui ); 
+                               {
+                                 return handleCollide.call( this, event, ui );
                                }
                              } ,
     stop:  function(event,ui){ if( ! $(this).data("draggable").options.obstacle ) // if there are obstacles, we already handled both
@@ -87,14 +87,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     create: function(event,ui){         handleInit   .call( this, event, ui ); },
     start: function(event,ui){ if( ! $(this).data("draggable").options.obstacle &&
                                    ! $(this).data("draggable").options.restraint   )
-                               {       
+                               {
                                         handleStart  .call( this, event, ui );
                                }
                              } ,
     drag:  function(event,ui){ if( ! $(this).data("draggable").options.obstacle &&
                                    ! $(this).data("draggable").options.restraint   )
-                               { 
-                                 return handleCollide.call( this, event, ui ); 
+                               {
+                                 return handleCollide.call( this, event, ui );
                                }
                              } ,
     stop:  function(event,ui){ if( ! $(this).data("draggable").options.obstacle &&
@@ -120,7 +120,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   {
     jQuery.Event.call( this, eventType );
     this.collider  = collider;
-    this.obstacle  = obstacle; 
+    this.obstacle  = obstacle;
     this.collisionType = collisionType;
     this.collision = collision;
   }
@@ -131,7 +131,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   {
     jQuery.Event.call( this, eventType );
     this.collider  = collider;
-    this.obstacle  = obstacle; 
+    this.obstacle  = obstacle;
     this.collisionType = collisionType;
   }
 
@@ -145,7 +145,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   {
     this.x1 = x1;
     this.y1 = y1;
-    this.x2 = x2; 
+    this.x2 = x2;
     this.y2 = y2;
   }
 
@@ -155,12 +155,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   Coords.prototype.centery = function() { return (this.y1+this.y2)/2; }
   Coords.prototype.area    = function() { return this.width()*this.height(); }
   Coords.prototype.hash    = function() { return "["+[this.x1,this.y1,this.x2,this.y2].join(",")+"]" }
-  Coords.prototype.distance = function(c)  
-  { 
+  Coords.prototype.distance = function(c)
+  {
     return this.distanceTo( c.centerx(), c.centery() );
   }
-  Coords.prototype.distanceTo = function(x,y)  
-  { 
+  Coords.prototype.distanceTo = function(x,y)
+  {
     var dx = this.centerx()-x;
     var dy = this.centerx()-y;
     return Math.sqrt( dx*dx + dy*dy );
@@ -205,9 +205,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       var y1 = dy + parseInt(jq.css("top"   )) || 0;
       var x2 = x1 + parseInt(jq.css("width" )) || 0;
       var y2 = y1 + parseInt(jq.css("height")) || 0;
-      x2 += (parseInt(jq.css("margin-left"))||0) + (parseInt(jq.css("border-left"))||0) + (parseInt(jq.css("padding-left"))||0) + 
+      x2 += (parseInt(jq.css("margin-left"))||0) + (parseInt(jq.css("border-left"))||0) + (parseInt(jq.css("padding-left"))||0) +
             (parseInt(jq.css("padding-right"))||0) + (parseInt(jq.css("border-right"))||0) + (parseInt(jq.css("margin-right"))||0);
-      y2 += (parseInt(jq.css("margin-top"))||0) + (parseInt(jq.css("border-top"))||0) + (parseInt(jq.css("padding-top"))||0) + 
+      y2 += (parseInt(jq.css("margin-top"))||0) + (parseInt(jq.css("border-top"))||0) + (parseInt(jq.css("padding-top"))||0) +
             (parseInt(jq.css("padding-bottom"))||0) + (parseInt(jq.css("border-bottom"))||0) + (parseInt(jq.css("margin-bottom"))||0);
 
     }
@@ -260,7 +260,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     else if( this.type == "protrusion" )
     {
       // if we're embedded in a top/bottom edge, don't move left or right, silly:
-      if( ( this.direction == "N" ) || ( this.direction == "S" ) ) return 0; 
+      if( ( this.direction == "N" ) || ( this.direction == "S" ) ) return 0;
 
       if( dirx < 0 ) /* want to move left  */ return this.colliderCoords.x2 - this.obstacleCoords.x2;
       if( dirx > 0 ) /* want to move right */ return this.obstacleCoords.x1 - this.colliderCoords.x1;
@@ -350,7 +350,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   function handleInit( event, ui, type )
   {
     var w = $(this).data("draggable");
-    var o = w.options;
+    //var o = w.options;
   }
 
   function debugCloneAt( element, x, y, w, h, color )
@@ -378,20 +378,20 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   function debugCloneContainment( element, draggable, containment, color )
   {
-    return debugCloneAt( element, containment[0], containment[1], 
-                         containment[2]-containment[0]+$(draggable).width(), 
+    return debugCloneAt( element, containment[0], containment[1],
+                         containment[2]-containment[0]+$(draggable).width(),
                          containment[3]-containment[1]+$(draggable).height(),
                        color );
   }
-  
+
   function handleStart(event,ui)
   {
     VISUAL_DEBUG = $(this).data("draggable").options.collisionVisualDebug;
-    $(this).data( "jquery-ui-draggable-collision-recent-position", ui.originalPosition ); 
+    $(this).data( "jquery-ui-draggable-collision-recent-position", ui.originalPosition );
   }
 
   function handleStop (event,ui)
-  { 
+  {
     $(this).removeData("jquery-ui-draggable-collision-recent-position");
     if( VISUAL_DEBUG ) $(".testdebug").remove();
     VISUAL_DEBUG = DEBUG;
@@ -446,7 +446,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     // List of Interactions -- first one is the main set of args from the .draggable() setup call, rest are multipleCollisionInteractions:[...]
     var ilist  = [];
-    
+
     if( o.obstacle || o.restraint ) ilist.push( new Interaction( $(this), o ) );
     if( o.multipleCollisionInteractions && o.multipleCollisionInteractions["length"] )
     {
@@ -521,7 +521,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       var cn = widget.containment.concat(); // clone it, otherwise we edit it and mess things up
       if( widget.relative_container )
-      { 
+      {
         cn[0] += $(widget.relative_container).offset().left;
         cn[1] += $(widget.relative_container).offset().top;
         cn[2] += $(widget.relative_container).offset().left;
@@ -548,7 +548,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // the actual things that collide
       dx = ui.position.left - rp.left;
       dy = ui.position.top  - rp.top;
-  
+
       // Empty the collision containers outside the interaction loop:
       ocl = [];
       cocl = [];
@@ -567,7 +567,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // Add offset to coordinates before figuring out collisions, because we're basing it on "where its about to go", not "where it is":
         // (Don't do this for anything but colliders! Applying to obstacles or restrictions or containment screws things up!!)
         $c.each( function(){ $(this).data( "jquery-collision-coordinates", jq2Coords($(this),dx,dy) ); } );
-    
+
         var cog = jqList2CenterGravity($c);
         for( var ci=0; ci<$c.length; ci++ )
         {
@@ -607,7 +607,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             if(VISUAL_DEBUG) $("<span>p"+iter+"</span>").appendTo( debugClone( $(oc), "magenta" ) );
           }
         }
-    
+
         // Now remove coordinate offsets before sending events, otherwise event results might futz with em:
         $c.each( function(){ $(this).removeData( "jquery-collision-coordinates" ); } );
       }
@@ -650,7 +650,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         if( DEBUG ) console.log("checking if we want to block something we have collided with...");
         // More specifically, if aren't any collisions that we actually want to prevent, stop -- though we have to think of this in the opposite sense:
-        // if we DO either 
+        // if we DO either
         //   want to prevent collisions yet have a collision or containment failure, OR
         //   want to prevent protrusions yet have a protrusion or a containment failure,
         // then DON'T STOP
@@ -710,7 +710,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     {
       var oc = ocl[ci]; // each ocl[n] is a Collision()
       for( var oci=0; oci<oc.collision.length; oci++ )
-      {  
+      {
         var $occ    = $( oc.collision[oci] );
 
         // Remove our custom data elements that guaranteed us getting the data we needed
@@ -772,10 +772,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   // Its purpose is to determine a single [dx,dy] to move the whole list of colliders and draggable,
   //   in an attempt to fit them properly. Only one of dx or dy will be non-zero at a time.
   // The cache argument is a simple object passed in from handleCollide, and is used to store previously-
-  //   -tried movements, so that it doesn't repeat itself. 
-  //   * The most common repeat case is if a collider is stuck inbetween two obstacles, and the space isn't big 
+  //   -tried movements, so that it doesn't repeat itself.
+  //   * The most common repeat case is if a collider is stuck inbetween two obstacles, and the space isn't big
   //     enough -- one iteration will have it clear obstacle A, but embed into obstacle B, and the next iteration
-  //     will reverse it, and it will get nowhere quickly. 
+  //     will reverse it, and it will get nowhere quickly.
   //   * The key for the hash is collider+obstacle coordinates, so the same collider won't avoid the same obstacle
   //     in the same way twice. (Actually three times, see below.)
   //   * Note that the value of the hash is either nothing, "tried normal", or "tried reverse"

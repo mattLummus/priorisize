@@ -49,5 +49,27 @@ block content
                 select#hybrid(name='hybrid')
 
   .row
+    .small-8.columns
+      #Schema
+        h2 Total Workload
+        p ( parent-workload  x  .75 ) + ( child-workload  x  .25 ) = adjusted-workload
+        p ( 1 + ( child-quantity / 500 ) ) + ( requisite-quantity / 300 )  = dependency-multiplier
+        p importance-true = 1.1 || importance-false = 0.9
+        p adjusted-workload x dependency-multiplier x importance = total-workload
+        h2 Urgency Value
+        p ( time-left / time-length ) * ( 1 + ( time-length / 600 ) ) = urgency
+        p adjusted-workload / urgency = urgency-value
+        h2 Priority Value
+        p urgency-value x final-adjustments = priority-value
+        h2 Tiers
+        h4 Ranked by Priority Value
+        p Top 10% = Red
+        p Top 30% = Yellow
+        p Bottom 70% = Green
+    .small-4.columns
+      #exp
+      
+
+  .row
     .small-12.columns
       #sandbox.sandbox

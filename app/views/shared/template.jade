@@ -19,12 +19,21 @@ html(class='no-js', lang='en')
 
       section.top-bar-section
         ul.left
+          li.divider
+          li: a.navPanel(href="/") Home
+          li.divider
+          li: a.navPanel(href="/") Register
+          li.divider
+          li: a.navPanel(href="/") Login
+          li.divider
         ul.right
-          li: a(href="/") Home
           li.divider
-          li: a(href="/") Register
+          li: a.navPanel(href="/") Home
           li.divider
-          li: a(href="/") Login
+          li: a.navPanel(href="/") Register
+          li.divider
+          li: a.navPanel(href="/") Login
+          li.divider
     .row
       .small-12.columns
         block content
@@ -32,8 +41,13 @@ html(class='no-js', lang='en')
     script(src='/js/vendor/jquery.js')
     script(src='/js/vendor/jquery-ui-1.10.4.custom.min.js')
     script(src='/js/vendor/jquery-collision.min.js')
+
+    //broken because of undefined o.options variable on line~353
+    //check for bug fix or use a earlier version of jQuery
     //script(src='/js/vendor/jquery-ui-draggable-collision.js')
+
     script(src='/js/vendor/foundation.min.js')
+    script(src='/js/source/UI.js')
     script(src='/js/vendor/lodash.js')
     script(src='/js/vendor/moment.js')
     script(src='/js/source/main.js')
