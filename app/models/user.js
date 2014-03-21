@@ -9,7 +9,7 @@ var path = require('path');
 
 var User;
 var users = global.nss.db.collection('users');
-var email = require('../lib/send-email');
+//var email = require('../lib/send-email');
 var bcrypt = require('bcrypt');
 var Mongo = require('mongodb');
 module.exports = User;
@@ -21,6 +21,7 @@ function User(user){
   this.name = user.name;
 }
 
+/*
 User.prototype.register = function(fn){
   var self = this;
   hashPassword(self.password, function(hashed){
@@ -33,6 +34,31 @@ User.prototype.register = function(fn){
               email.sendWelcome({to:self.email, name:self.name}, function(err, body){
                 fn(err, body);
               });
+            });
+          } else {
+            fn('You tried to register a duplicate user (failed because of duplicate name).');
+          }
+        });
+      } else {
+        fn('You tried to register a duplicate user (failed because of duplicate email).');
+      }
+    });
+  });
+};
+*/
+
+User.prototype.register = function(fn){
+  var self = this;
+  hashPassword(self.password, function(hashed){
+    self.password = hashed;
+    User.dupeCheckEmail(self.email, function(dupeResult){
+      if (dupeResult.response){ //dupeCheck will return true on .response if there is NOT a duplicate email in the DB
+        User.dupeCheckName(self.name, function(dupeResult){
+          if (dupeResult.response){
+            insert(self, function(err, inserted){
+              //email.sendWelcome({to:self.email, name:self.name}, function(err, body){
+              //  fn(err, body);
+              //});
             });
           } else {
             fn('You tried to register a duplicate user (failed because of duplicate name).');
