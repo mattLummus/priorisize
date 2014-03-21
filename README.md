@@ -21,3 +21,5 @@ behind the scenes calculations help manage your attention to what is most urgent
 - Blanket
 - TravisCI
 - Coveralls
+- jQuery & jQueryUI
+- jQuery-Collision & jQuery-Collision-Draggable
