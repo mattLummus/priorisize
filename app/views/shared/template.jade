@@ -14,14 +14,31 @@ html(class='no-js', lang='en')
       section.top-bar-section
         ul.left
           li.name
-            h1: a.navPanel#navTitle(href="/") priorisize
+            h1: a.navPanel#regButton(href="/") Register
           li.divider
-          li: a.navPanel(href="/") Home
+          li.name
+            h1: a.navPanel#logButton(href="/") Login
           li.divider
-          li: a.navPanel(href="/") Register
-          li.divider
-          li: a.navPanel(href="/") Login
-          li.divider
+        ul.right
+          li.name#loginForm.navForm
+            .row
+              .small-5.columns
+                input(type='email', name='email', placeholder='email', required=true)
+              .small-5.columns
+                input(type='password', name='password', placeholder='password', required=true)
+              .small-2.columns
+                button.small Login
+          li.name#registerForm.navForm
+            .row
+              .small-4.columns
+                input(type='email', name='email', placeholder='email', required=true)
+              .small-3.columns
+                input(type='password', name='password', placeholder='password', required=true)
+              .small-3.columns
+                input(type='text', name='name', placeholder='user-name', required=true)
+              .small-2.columns
+                button.small Register
+          li.name#filler
     .row
       .small-12.columns
         block content
