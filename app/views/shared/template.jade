@@ -21,23 +21,25 @@ html(class='no-js', lang='en')
           li.divider
         ul.right
           li.name#loginForm.navForm
-            .row
-              .small-5.columns
-                input(type='email', name='email', placeholder='email', required=true)
-              .small-5.columns
-                input(type='password', name='password', placeholder='password', required=true)
-              .small-2.columns
-                button.small Login
+            form#logForm(action='/login' method='post')
+              .row
+                .small-5.columns
+                  input(type='email', name='email', placeholder='email', required=true)
+                .small-5.columns
+                  input(type='password', name='password', placeholder='password', required=true)
+                .small-2.columns
+                  button.small Login
           li.name#registerForm.navForm
-            .row
-              .small-4.columns
-                input(type='email', name='email', placeholder='email', required=true)
-              .small-3.columns
-                input(type='password', name='password', placeholder='password', required=true)
-              .small-3.columns
-                input(type='text', name='name', placeholder='user-name', required=true)
-              .small-2.columns
-                button.small Register
+            form#regForm(action='/register' method='post')
+              .row
+                .small-4.columns
+                  input(type='email', name='email', placeholder='email', required=true)
+                .small-3.columns
+                  input(type='password', name='password', placeholder='password', required=true)
+                .small-3.columns
+                  input(type='text', name='name', placeholder='user-name', required=true)
+                .small-2.columns
+                  button.small Register
           li.name#filler
     .row
       .small-12.columns
