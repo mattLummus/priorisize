@@ -1,7 +1,7 @@
 'use strict';
 
 var MongoClient = require('mongodb').MongoClient;
-var mongoUrl = 'mongodb://192.168.11.59/' + process.env.DBNAME;
+var mongoUrl = 'mongodb://10.0.1.4/' + process.env.DBNAME;
 var initialized = false;
 
 exports.connect = function(req, res, next){
@@ -22,4 +22,3 @@ exports.db = function(fn){
     fn();
   });
 };
-
