@@ -9,8 +9,8 @@
     fixPanel();
     $('#forms').hide();
     $('.navForm').hide();
-    $('#logButton').click(toggleReg);
-    $('#regButton').click(toggleLog);
+    $('#regButton').click(toggleReg);
+    $('#logButton').click(toggleLog);
     $('#toggle').click(toggleForms);
   }
 
