@@ -19,6 +19,9 @@
   function fixPanel(){
     $('.navPanel').css('background-color', '#f1fdfe');
     $('.navPanel').css('color', 'black');
+    $('#navTitle').css('color', 'white');
+    $('#navTitle').css('font-size', '20px');
+    $('#navTitle').css('background-color', '#007095');
   }
 
 

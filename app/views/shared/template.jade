@@ -11,22 +11,10 @@ html(class='no-js', lang='en')
     script(src='/js/vendor/modernizr.js')
   body
     nav.top-bar
-      ul.title-area
-        li.name
-          h1: a(href="/")= title
-        li.toggle-topbar.menu-icon
-          a(href="#") Menu
-
       section.top-bar-section
         ul.left
-          li.divider
-          li: a.navPanel(href="/") Home
-          li.divider
-          li: a.navPanel(href="/") Register
-          li.divider
-          li: a.navPanel(href="/") Login
-          li.divider
-        ul.right
+          li.name
+            h1: a.navPanel#navTitle(href="/") priorisize
           li.divider
           li: a.navPanel(href="/") Home
           li.divider
