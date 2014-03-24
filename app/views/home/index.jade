@@ -46,6 +46,41 @@ block content
                 label Hybrid
                 select#hybrid(name='hybrid')
 
+  //level-a and level-b... represent the CSS positioning origin and rows of the cluster and outer rows
+  //level-0,1,2... represent the parent child structure
+  // ^ if they all share the same parent, they should have the same numerical level
+
+  .row
+    .small-12.columns
+      #sandbox0.sandbox
+
+  .row
+    .small-12.columns
+      #sandbox1.sandbox
+         #clusterRed
+            .level-a
+               div.bubble.size-5.red.level-0
+            .level-b
+               div.bubble.size-4.red.level-0
+               div.bubble.size-3.red.level-0
+               div.bubble.size-2.red.level-0
+               div.bubble.size-1.red.level-0
+         #clusterYellow
+            .level-a
+               div.bubble.size-5.yellow.level-0
+            .level-b
+               div.bubble.size-4.yellow.level-0
+               div.bubble.size-3.yellow.level-0
+               div.bubble.size-2.yellow.level-0
+               div.bubble.size-1.yellow.level-0
+         #clusterGreen
+            .level-a
+               div.bubble.size-5.green.level-0
+            .level-b
+               div.bubble.size-4.green.level-0
+               div.bubble.size-3.green.level-0
+               div.bubble.size-2.green.level-0
+               div.bubble.size-1.green.level-0
   .row
     .small-12.columns
       h1 Family
@@ -103,20 +138,20 @@ block content
   .row
     .small-12.columns
       #sandbox5.sandbox
-            div.bubble.size-5.green
-            div.bubble.size-4.green
-            div.bubble.size-3.green
-            div.bubble.size-2.green
-            div.bubble.size-1.green
-            div.bubble.size-5.yellow
-            div.bubble.size-4.yellow
-            div.bubble.size-3.yellow
-            div.bubble.size-2.yellow
-            div.bubble.size-1.yellow
-            div.bubble.size-5.red
-            div.bubble.size-4.red
-            div.bubble.size-3.red
-            div.bubble.size-2.red
-            div.bubble.size-1.red
+            div.bubble.size-5.green.level-0
+            div.bubble.size-4.green.level-0
+            div.bubble.size-3.green.level-0
+            div.bubble.size-2.green.level-0
+            div.bubble.size-1.green.level-0
+            div.bubble.size-5.yellow.level-0
+            div.bubble.size-4.yellow.level-0
+            div.bubble.size-3.yellow.level-0
+            div.bubble.size-2.yellow.level-0
+            div.bubble.size-1.yellow.level-0
+            div.bubble.size-5.red.level-0
+            div.bubble.size-4.red.level-0
+            div.bubble.size-3.red.level-0
+            div.bubble.size-2.red.level-0
+            div.bubble.size-1.red.level-0
   if user
     input#uid(value= userId)

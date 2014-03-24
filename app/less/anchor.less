@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Browser Orbit - CSS3 Animation using Keyframes and Transform</title>
+<meta name='description' content='Browser Orbit - CSS3 Animation using Keyframes and Transform'/> 
+<link rel="canonical" href="http://www.iamkumaran.com/apps/css3-animation-demo/" /> 
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="../jquery/css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <h1>Browser Orbit - CSS3 Animation using Keyframes and Transform</h1>
+  <div id="notify-err" style="display:none"></div>
+  
+  <div class="controls">
+    <span class="text">Rotate X-axis </span><div id="rX-slider"></div>
+    <input type="hidden" id="rX-val" value="55"/><br />
+    <span class="text">Zoom In/Out </span><div id="sX-slider"></div>
+    <input type="hidden" id="sX-val" value="1.5"/>
+    <h2><a href="http://www.iamkumaran.com/browser-orbit-css3-animation-using-keyframes-and-transform/#respond">Leave Your Comment</a></h2>
+  </div>
+  <div id="l">
+    <div id="l1"><img src="globe.png" alt="Earth" title="Earth" /></div>
+    <div id="l2"><img src="256-ie.png" alt="Microsoft Internet Explorer" title="Microsoft Internet Explorer" /></div>
+    <div id="l3"><img src="firefox_original.png" alt="Mozilla Firefox" title="Mozilla Firefox" /></div>
+    <div id="l4"><img src="256-chrome.png" alt="Google Chrome" title="Google Chrome" /></div>
+    <div id="l5"><img src="safari.png" alt="Apple Safari" title="Apple Safari" /></div>
+  </div>
+<script type="text/javascript" src="../jquery/js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="../jquery/js/jquery-ui-1.8.14.custom.min.js"></script>
+<script type="text/javascript">
+$(function() {
+  if(!$.browser.webkit){
+    if($.browser.mozilla && $.browser.version == '5.0')
+      $('#notify-err').text('Firefox is limited with CSS3 animation. This demo works fine only with Google Chrome and Safari browsers.');
+    else
+      $('#notify-err').text('This demo works only with Google Chrome and Safari browsers.');
+    $('#notify-err').slideDown(500);
+  }
+  $( "#rX-slider" ).slider({
+    range: "min",
+    value: 55,
+    min: 1,
+    max: 190,
+    animate:true,
+    slide: function( event, ui ) {
+      $('#rX-val').val(ui.value)
+      var t = 'rotateX('+ui.value+'deg) scale('+$('#sX-val').val()+')';
+      $( "#l" ).css('transform',t);
+      $( "#l" ).css('-moz-transform',t);
+      $( "#l" ).css('-webkit-transform',t);
+      $( "#l" ).css('-o-transform',t);
+    }
+  });
+  $( "#sX-slider" ).slider({
+    range: "min",
+    value: 1.5,
+    min: 0.1,
+    max: 10.0,
+    step: 0.1,
+    animate:true,
+    slide: function( event, ui ) {
+      $('#sX-val').val(ui.value)
+      var t = 'rotateX('+$('#rX-val').val()+'deg) scale('+ui.value+')';
+      $( "#l" ).css('transform',t);
+      $( "#l" ).css('-moz-transform',t);
+      $( "#l" ).css('-webkit-transform',t);
+      $( "#l" ).css('-o-transform',t);
+    }
+  });
+});
+var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-16916106-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript';ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);})();
+</script>
+</body>
+</html>
