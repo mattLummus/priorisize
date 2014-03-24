@@ -46,15 +46,16 @@ html(class='no-js', lang='en')
         block content
 
     script(src='/js/vendor/jquery.js')
-    script(src='/js/vendor/jquery-ui-1.10.4.custom.min.js')
-    script(src='/js/vendor/jquery-collision.min.js')
+    // script(src='/js/vendor/jquery-ui-1.10.4.custom.min.js')
+    // ^bug with current version; using 1.9.2 instead
 
-    //broken because of undefined o.options variable on line~353
-    //check for bug fix or use a earlier version of jQuery
-    //script(src='/js/vendor/jquery-ui-draggable-collision.js')
+    script(src='/js/vendor/jquery-ui-1.9.2.custom.js')
+    script(src='/js/vendor/jquery-collision.min.js')
+    script(src='/js/vendor/jquery-ui-draggable-collision.js')
 
     script(src='/js/vendor/foundation.min.js')
     script(src='/js/source/UI.js')
+    script(src='/js/source/AI.js')
     script(src='/js/vendor/lodash.js')
     script(src='/js/vendor/moment.js')
     script(src='/js/source/main.js')

@@ -50,20 +50,20 @@ block content
     .small-12.columns
       h1 Family
       #sandbox2.sandbox
-            div.bubble.size-5.green
-              div.bubble.size-2.yellow
-              div.bubble.size-3.red
-              div.bubble.size-1.yellow
-              div.bubble.size-2.red
-              div.bubble.size-2.green2
-            div.bubble.size-5.yellow
-              div.bubble.size-1.green
-              div.bubble.size-1.red
-              div.bubble.size-2.yellow2
-            div.bubble.size-5.red
-              div.bubble.size-2.red2
-              div.bubble.size-2.yellow
-              div.bubble.size-1.yellow
+            div.bubble.size-5.green.level-0.activeBubble
+              div.bubble.size-2.yellow.level-1
+              div.bubble.size-3.red.level-1
+              div.bubble.size-1.yellow.level-1
+              div.bubble.size-2.red.level-1
+              div.bubble.size-2.green2.level-1
+            div.bubble.size-5.yellow.level-0
+              div.bubble.size-1.green.level-1
+              div.bubble.size-1.red.level-1
+              div.bubble.size-2.yellow2.level-1
+            div.bubble.size-5.red.level-0
+              div.bubble.size-2.red2.level-1
+              div.bubble.size-2.yellow.level-1
+              div.bubble.size-1.yellow.level-1
   .row
     .small-12.columns
       h1 Family
@@ -118,3 +118,5 @@ block content
             div.bubble.size-3.red
             div.bubble.size-2.red
             div.bubble.size-1.red
+  if user
+    input#uid(value= userId)

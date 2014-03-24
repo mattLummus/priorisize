@@ -48,6 +48,12 @@
 
 
   //DRAGGABLE
-  $('.bubble').draggable({containment: 'parent', obstacle: 'sibling', cursor: 'pointer', preventCollision:true});
+  //$('.bubble').draggable({containment: 'parent', cursor: 'pointer', preventCollision:true});
+
+  $('.bubble').draggable({multipleCollisionInteractions:
+    [ { collider:  '.level-0', obstacle:  '.level-0', containment: 'parent', preventCollision: true },
+      { collider: '.level-1', obstacle: '.level-1', containment: 'parent', preventCollision: true }
+    ]
+  });
 
 })();
