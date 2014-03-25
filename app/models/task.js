@@ -29,7 +29,7 @@ Task.prototype.insert = function(fn){
 };
 
 Task.destroy = function(id, fn){
-  var _id = Mongo.ObjectID(id);
+  var _id = Mongo.ObjectID(id.toString());
   tasks.remove({_id:_id}, function(err, count){
     fn(count);
   });
@@ -43,10 +43,8 @@ Task.prototype.update = function(fn){
 };
 
 Task.findById = function(id, fn){
-  var _id = new Mongo.ObjectID(id);
+  var _id = new Mongo.ObjectID(id.toString());
   tasks.findOne({_id:_id}, function(err, record){
-    console.log(_id);
-    console.log(record);
     fn(record);
   });
 };
