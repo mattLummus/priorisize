@@ -1,4 +1,4 @@
-/* jshint unused:false */
+/* jshint unused:false, loopfunc:true */
 (function(){
 
   'use strict';
@@ -31,7 +31,7 @@
   function calculatePriority(data){
     var tasks = data.tasks;
     var newTasks = [];
-    var adjustedWorkload, dependencyMultiplier, totalWorkload;
+    var adjustedWorkload, dependencyFactor, dependencyMultiplier, totalWorkload;
     var cwkArray, childWorkload, childQuantity, impFactor;
     var urgency, urgencyValue;
     var priorityValue;
@@ -39,25 +39,30 @@
     for(var y=0; y<tasks.length; y++){
       var tempTask = tasks[y];
       cwkArray = [];
-      //FIX THIS! need to calculate childWorkload and quantity
-      //find tasks by id from tasks[], put wk value into cwkArray and then average the array
-      childWorkload = 2;
       childQuantity = tempTask.childGroup.length;
-      dependencyMultiplier = 2;
+      for(var z=0; z<childQuantity; z++){
+        var tempCheck = tempTask.childGroup[z];
+        var tempChild = _.filter(tasks, function(t){return t._id===tempCheck._id;});
+        cwkArray.push(tempChild.workload);
+      }
+      var sum = _.reduce(cwkArray, function(sum, num) {
+        return sum + num;
+      });
+      childWorkload = (sum / childQuantity);
+
+      //should slope upward (each additional depdendent is less impactful)
+      dependencyFactor = (1+ ((tempTask.dependents*0.03)-(tempTask.dependencies*0.01)));
       if(tempTask.importance===true){impFactor=1.1;}
       else if(tempTask.importance===false){impFactor=0.9;}
       else{impFactor=1;}
 
       adjustedWorkload = ((tempTask.workload*(3/4)) + (childWorkload*(1/4)));
-      dependencyMultiplier = ((1+(childQuantity/500)) + (dependencyMultiplier/300));
+      dependencyMultiplier = ((1+(childQuantity*0.01)) * dependencyFactor);
       totalWorkload = adjustedWorkload*dependencyMultiplier*impFactor;
 
-      //FIX THIS! need to calculate time here
       var currentDate = new Date();
-      //var left = endDate-currentDate;
-      var left = 14;
-      //var length = endDate-startDate;
-      var length = 30;
+      var left = tempTask.endDate - currentDate;
+      var length = tempTask.endDate - tempTask.startDate;
       urgency = ((left/length) * (1+(length/600)));
       urgencyValue = (adjustedWorkload / urgency);
 
