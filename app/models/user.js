@@ -19,6 +19,7 @@ function User(user){
   this.email = user.email;
   this.password = user.password;
   this.name = user.name;
+  this.tasks = user.tasks || [];
 }
 
 /*
@@ -148,3 +149,10 @@ User.prototype.update = function(fn){
     });
   });
 };
+
+/*
+User.prototype.addTask = function(taskId, fn){
+  this.tasks.push(taskId);
+  this.update(fn);
+};
+*/

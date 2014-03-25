@@ -28,7 +28,7 @@ describe('Team', function(){
     it('should create a new Task object', function(){
       var date = new Date();
       //this is how a new task SHOULD look but may not now by default; work on this
-      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentGroup:[], level:0, complete:false};
+      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentId:'', level:0, complete:false};
       var task = new Task(obj);
       expect(task).to.be.instanceof(Task);
     });
@@ -37,7 +37,7 @@ describe('Team', function(){
   describe('#insert', function(){
     it('should add task to the database', function(done){
       var date = new Date();
-      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentGroup:[], level:0, complete:false};
+      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentId:'', level:0, complete:false};
       var task = new Task(obj);
       task.insert(function(){
         expect(task._id).to.be.ok; //not a good test
@@ -49,7 +49,7 @@ describe('Team', function(){
   describe('#destroy', function(){
     it('should remove a task from the database', function(done){
       var date = new Date();
-      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentGroup:[], level:0, complete:false};
+      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentId:'', level:0, complete:false};
       var task = new Task(obj);
       task.insert(function(){
         console.log('task._id', task._id);
@@ -64,7 +64,7 @@ describe('Team', function(){
   describe('#update', function(){
     it('should update the task in the database', function(done){
       var date = new Date();
-      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentGroup:[], level:0, complete:false};
+      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentId:'', level:0, complete:false};
       var task = new Task(obj);
       task.insert(function(){
         task.workload = 2;
@@ -80,7 +80,7 @@ describe('Team', function(){
   describe('#findById', function(){
     it('should find a task by its id', function(done){
       var date = new Date();
-      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentGroup:[], level:0, complete:false};
+      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentId:'', level:0, complete:false};
       var task = new Task(obj);
       task.insert(function(){
         Task.findById(task._id, function(record){
@@ -94,7 +94,7 @@ describe('Team', function(){
   describe('findAll', function(){
     it('should find all tasks', function(done){
       var date = new Date();
-      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentGroup:[], level:0, complete:false};
+      var obj = {description:'Do Laundry', userId:'userId', workload:3, importance:true, date:date, childGroup:[], parentId:'', level:0, complete:false};
       var task = new Task(obj);
       task.insert(function(){
         Task.findAll(function(records){

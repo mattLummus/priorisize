@@ -2,7 +2,7 @@
   "name": "name-of-application",
   "repository" : {
     "type" : "git",
-    "url"  : "http://github.com/USERNAME/NAME-OF-REPO.git"
+    "url"  : "http://github.com/mattLummus/priorisize.git"
   },
   "version": "0.0.1",
   "bin": {"coveralls" : "./node_modules/coveralls/bin/coveralls.js"},
@@ -11,7 +11,8 @@
     "start"     : "node app/app.js",
     "test"      : "mocha --recursive test",
     "testwatch" : "mocha -w --recursive test",
-    "coveralls" : "./node_modules/mocha/bin/mocha test --recursive -r blanket -R mocha-lcov-reporter | coveralls"
+    "coveralls" : "./node_modules/mocha/bin/mocha test --recursive -r blanket -R mocha-lcov-reporter | coveralls",
+    "startMongo" : "mongod --config ~/download/config-files/mongodb.conf"
   },
   "dependencies": {
     "express":         "*",
