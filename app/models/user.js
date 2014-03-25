@@ -56,6 +56,7 @@ User.prototype.register = function(fn){
         User.dupeCheckName(self.name, function(dupeResult){
           if (dupeResult.response){
             insert(self, function(err, inserted){
+              fn(err);
               //email.sendWelcome({to:self.email, name:self.name}, function(err, body){
               //  fn(err, body);
               //});
