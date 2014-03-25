@@ -39,10 +39,11 @@
     for(var y=0; y<tasks.length; y++){
       var tempTask = tasks[y];
       cwkArray = [];
-      childQuantity = tempTask.childGroup.length;
+      if(tempTask.childGroup){childQuantity = tempTask.childGroup.length || 0;}
+      else if(!tempTask.childGroup){childQuantity = 0;}
       for(var z=0; z<childQuantity; z++){
-        var tempCheck = tempTask.childGroup[z];
-        var tempChild = _.filter(tasks, function(t){return t._id===tempCheck._id;});
+        var tempCheck = tempTask.childGroup[z].toString();
+        var tempChild = _.filter(tasks, function(t){return t._id.toString()===tempCheck._id.toString();});
         cwkArray.push(tempChild.workload);
       }
       var sum = _.reduce(cwkArray, function(sum, num) {
@@ -50,7 +51,7 @@
       });
       childWorkload = (sum / childQuantity);
 
-      //should slope upward (each additional depdendent is less impactful)
+      //should ideally slope upward (each additional depdendent is less impactful)
       dependencyFactor = (1+ ((tempTask.dependents*0.03)-(tempTask.dependencies*0.01)));
       if(tempTask.importance===true){impFactor=1.1;}
       else if(tempTask.importance===false){impFactor=0.9;}
@@ -68,15 +69,20 @@
 
       //FIX THIS! write code when decided upon
       var finalAdjustments = 1;
-      priorityValue = (urgencyValue * finalAdjustments);
+      priorityValue = (urgencyValue * finalAdjustments).toFixed(3);
 
       tempTask.priorityValue = priorityValue;
       newTasks.push(tempTask);
       //end Loop
     }
 
-    //need to sort newTasks by priority (largest to smallest)
-    sortColors({tasks:newTasks});
+    //sorts by priority
+    var sortedTasks = newTasks.sort(function(a,b){
+      if(a.name > b.name){return 1;}
+      if(a.name < b.name){return -1;}
+      return 0;
+    });
+    sortColors({tasks:sortedTasks});
   }
 
 
@@ -85,15 +91,17 @@
 
   //APPENDATION
   //receives from calculatePriority()
+  //sorting mechanism could be surely improved
   function sortColors(data){
     console.log('sorting colors', data);
     var tasks = data.tasks;
     var num = tasks.length;
+    console.log('num ', num);
     var red = Math.floor(num/10);
+    console.log('red length', red);
     var yellow = Math.floor(num/5);
+    console.log('yellow length', yellow);
 
-    //simulates priority sorting for testing purposes
-    tasks = _.shuffle(tasks);
     var redArray = [];
     var yellowArray = [];
     var greenArray = [];
@@ -115,8 +123,6 @@
     //end of sortColors(data)
   }
 
-
-
   function prepBubbles(data){
     for(var x=0; x<data.taskArray.length; x++){
       if(data.taskArray[x].tasks.length>0){
@@ -124,8 +130,6 @@
       }
     }
   }
-
-
 
   function append(data){
     var tasks = data.tasks;
@@ -165,7 +169,6 @@
       $bubble.fadeIn(100+speed);
       $bubble.effect('size', {to:{width:resize, height:resize}});
     }
-
   //end of append(data)
   }
 
