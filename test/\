@@ -22,17 +22,18 @@ describe('User', function(){
     });
   });
 
+  /*
   beforeEach(function(done){
     console.log('before each running');
     global.nss.db.dropDatabase(function(err, result){
       console.log('DB dropped');
-      done();
-      //u1 = new User({name: 'Bob', email:'nomail@hotmail.com', password:'678utf'});
-      //u1.register(function(err, body){
-      //  done();
-      //});
+      u1 = new User({name: 'Bob', email:'nomail@hotmail.com', password:'678utf'});
+      u1.register(function(err, body){
+        done();
+      });
     });
   });
+  */
 
   describe('new', function(){
     it('should create a new User object', function(){
@@ -135,7 +136,7 @@ describe('User', function(){
       u2.register(function(err, ret){
         User.findByEmail('mattlummus_2009@hotmail.com', function(record){
           //we can't run the following test based on ID since user.register doesn't return the registered user
-          expect(record.name).to.equal('Matt');
+          expect(record.name).to.equal('matt');
           done();
         });
       });
@@ -152,7 +153,7 @@ describe('User', function(){
     it('should update an existing user', function(done){
       User.findByEmail('mattlummus_2009@hotmail.com', function(record){
         record = new User(record);
-        record.email = 'mattlummus_209@hotmail.com';
+        record.email = 'mattlummus_2009@hotmail.com';
         record.update(function(updatedUser){
           expect(updatedUser.email).to.equal('mattlummus_209@hotmail.com');
           expect(updatedUser._id).to.deep.equal(record._id);

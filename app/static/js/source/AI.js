@@ -1,3 +1,4 @@
+/* jshint unused:false */
 (function(){
 
   'use strict';
@@ -6,7 +7,7 @@
 
   function initialize(){
     $(document).foundation();
-    receiveData();
+    //receiveData();
   }
 
   function receiveData(){
