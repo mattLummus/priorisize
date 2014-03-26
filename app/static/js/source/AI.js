@@ -1,4 +1,5 @@
 /* jshint unused:false, loopfunc:true */
+/* global d3:true */
 (function(){
 
   'use strict';
@@ -7,7 +8,7 @@
 
   function initialize(){
     $(document).foundation();
-    receiveData();
+    //receiveData();
   }
 
   function receiveData(){
@@ -19,13 +20,13 @@
   function logger(data){
     console.log('data received', data);
     if(data.tasks.length>0){
-      calculatePriority(data);
+      //calculatePriority(data);
     }
     else{console.log('No Tasks Found');}
   }
 
 
-
+/*
   //CALCULATIONS
   //sends to sortColors(data)
   function calculatePriority(data){
@@ -171,6 +172,7 @@
     }
   //end of append(data)
   }
+*/
 
 //end of document
 })();

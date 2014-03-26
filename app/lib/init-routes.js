@@ -23,8 +23,9 @@ function load(app, fn){
   app.post('/login', d, users.login);
   app.post('/logout', d, users.logout);
   app.post('/task/create', d, tasks.insert);
-  app.get('/tasks/user/:id', d, tasks.index);
+  //app.get('/tasks/user/:id', d, tasks.index);
   app.get('/tasks/find', d, tasks.index);
+  app.get('/tasks/graph', d, tasks.graph);
   console.log('Routes Loaded');
   fn();
 }
