@@ -12,12 +12,12 @@ exports.index = function(req, res){
 };
 
 exports.graph = function(req, res){
-  var graph = {'name':'Project', 'children':[
+  var data = {'name':'Project', 'children':[
     //testing
-    {'name':'Testing', 'children':[
-      {'name':'Unit', 'children':[
-        {'name':'user_spec', 'size':193800},
-        {'name':'task_spec', 'size':181200}
+    {'name':'Testing', 'color':'red', 'size':193800, 'children':[
+      {'name':'Unit', 'color':'red', 'children':[
+        {'name':'user_spec', 'color':'red', 'size':193800},
+        {'name':'task_spec', 'color':'red', 'size':181200}
       ]},
       {'name':'Acceptance', 'children':[
         {'name':'users_spec', 'size':153400},
@@ -64,7 +64,28 @@ exports.graph = function(req, res){
     ]}
 
   ]};
-  res.send(graph);
+  res.send(data);
+};
+
+exports.graph2 = function(req, res){
+  var data = {'nodes': [
+    {'name': 'd3'},
+    {'name': 'd3.svg'},
+    {'name': 'd3.svg.area'},
+    {'name': 'd3.svg.line'},
+    {'name': 'd3.scale'},
+    {'name': 'd3.scale.linear'},
+    {'name': 'd3.scale.ordinal'}
+  ],
+    'links': [
+      {'source': 0, 'target': 1},
+      {'source': 1, 'target': 2},
+      {'source': 1, 'target': 3},
+      {'source': 0, 'target': 4},
+      {'source': 4, 'target': 5},
+      {'source': 4, 'target': 6}
+    ]};
+  res.send(data);
 };
 
 

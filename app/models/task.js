@@ -14,15 +14,13 @@ function Task(task){
   this.userId = task.userId;
   this.workload = task.workload;
   this.importance = task.importance;
-  this.date = task.endDate;
+  this.endDate = task.endDate;
   //need to fix this by adding a hidden input on create task form
-  this.date = task.startDate || new Date();
+  this.startDate = task.startDate || new Date();
   this.childGroup = task.childGroup;
   this.parentId = task.parentId;
   this.level = task.level;
-  //the identifier for tree position (ex: A, BB, CAB, etc.)
-  this.treeIndex = task.treeIndex;
-  this.complete = task.complete;
+  this.complete = task.complete || false;
   //dependent upon other tasks
   this.dependencies = task.dependencies || [];
   //other tasks that depend on this task

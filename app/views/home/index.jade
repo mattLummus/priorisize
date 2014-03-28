@@ -20,15 +20,16 @@ block content
               .small-3.columns
                 label Important?
                 select#importance(name='importance')
-                  option(value=true) Yes
-                  option(value=false) False
+                  option(value='true') True
+                  option(value='false') False
               .small-6.columns
                 label End Date
-                input#endDate(type='date', name='end', required=true)
+                input#endDate(type='date', name='endDate', required=true)
               .small-3.columns
             .row
               .small-8.columns
                 input#description(type='text', placeholder='description', name='description')
+                input#user(type='hidden')
               .small-4.columns
                 button Submit
       .small-6.columns
@@ -50,6 +51,21 @@ block content
   //level-0,1,2... represent the parent child structure
   // ^ if they all share the same parent, they should have the same numerical level
 
+  .row
+    .small-12.columns
+      #sandboxe.sandbox
+  .row
+    .small-12.columns
+      #sandboxa.sandbox
+  .row
+    .small-12.columns
+      #sandboxb.sandbox
+  .row
+    .small-12.columns
+      #sandboxc.sandbox
+  .row
+    .small-12.columns
+      #sandboxd.sandbox
   .row
     .small-12.columns
       #sandbox0.sandbox

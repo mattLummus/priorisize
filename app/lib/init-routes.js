@@ -26,6 +26,7 @@ function load(app, fn){
   //app.get('/tasks/user/:id', d, tasks.index);
   app.get('/tasks/find', d, tasks.index);
   app.get('/tasks/graph', d, tasks.graph);
+  app.get('/tasks/graph2', d, tasks.graph2);
   console.log('Routes Loaded');
   fn();
 }
