@@ -55,7 +55,7 @@
 
     // Update nodes.
     node = node.data(nodes, function(d) { return d.id; });
-    console.log('node', node[0]);
+    //console.log('node', node[0]);
 
     node.exit().remove();
 

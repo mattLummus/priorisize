@@ -8,10 +8,17 @@
     $(document).foundation();
     fixPanel();
     $('#forms').hide();
+    $('#dependencies').hide();
     $('.navForm').hide();
     $('#regButton').click(toggleReg);
     $('#logButton').click(toggleLog);
     $('#toggle').click(toggleForms);
+    $('#toggle2').click(toggleTree);
+  }
+
+  function toggleTree(){
+    $('#dependencies').fadeToggle('slow', 'linear');
+    event.preventDefault();
   }
 
   function toggleReg(){
@@ -43,7 +50,7 @@
     $('.navForm').css('box-shadow', 'inset 0 0 10px #000000');
     $('.navForm').css('width', '1038px');
     $('.navForm').css('float', 'right');
-    $('.name').css('height', '80px');
+    $('.name').css('height', '50px');
   }
 
 

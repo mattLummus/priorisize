@@ -3,7 +3,8 @@ extends ../shared/template
 block content
   h1 priorisize <span id='beta'> Pre-Alpha</span>
   button.small.radius#toggle Tasks
-  a#logout(href='/logout', action='post') Logout
+  button.small.radius#toggle2 Tree
+  button.small.radius#logout(href='/logout', action='post') Logout
   #forms
     .row
       .small-6.columns
@@ -22,10 +23,13 @@ block content
                 select#importance(name='importance')
                   option(value='true') True
                   option(value='false') False
-              .small-6.columns
+              .small-3.columns
                 label End Date
                 input#endDate(type='date', name='endDate', required=true)
               .small-3.columns
+                label Branch
+                select#branch(name='branch')
+                  option Root
             .row
               .small-8.columns
                 input#description(type='text', placeholder='description', name='description')
@@ -35,17 +39,64 @@ block content
       .small-6.columns
         form#myTasks
           fieldset
-            legend My Tasks
+            legend Edit Task
             .row
+              .small-3.columns
+                label Workload
+                select#workload(name='workload')
+                  option(value=1) Low
+                  option(value=2) Medium
+                  option(value=3) High
+              .small-3.columns
+                label Important?
+                select#importance(name='importance')
+                  option(value='true') True
+                  option(value='false') False
+              .small-3.columns
+                label End Date
+                input#endDate(type='date', name='endDate', required=true)
+              .small-3.columns
+                label Branch
+                select#branch(name='branch')
+                  option Root
+              .small-3.columns
+            .row
+              .small-8.columns
+                input#description(type='text', placeholder='description', name='description')
+                input#user(type='hidden')
               .small-4.columns
-                label "By Priority (All)"
-                select#priority(name='priority')
-              .small-4.columns
-                label Root Family
-                select#rootFamily(name='rootFamily')
-              .small-4.columns
-                label Hybrid
-                select#hybrid(name='hybrid')
+                button Submit
+  #dependencies
+    .row
+      .small-6.columns
+        form#editTree
+          fieldset
+            legend Edit Tree
+            .row
+              .small-3.columns
+                label Add Dependency
+                select#aCie(name='aCie')
+              .small-3.columns
+                label Remove Dependency
+                select#rCie(name='rCie')
+              .small-3.columns
+                label Add Dependent
+                select#aEnt(name='aEnt')
+              .small-3.columns
+                label Remove Dependent
+                select#rEnt(name='rEnt')
+            .row
+              .small-3.columns
+                button.small Add
+              .small-3.columns
+                button.small Remove
+              .small-3.columns
+                button.small Add
+              .small-3.columns
+                button.small Remove
+      .small-6.columns
+
+
 
   //level-a and level-b... represent the CSS positioning origin and rows of the cluster and outer rows
   //level-0,1,2... represent the parent child structure
@@ -54,6 +105,9 @@ block content
   .row
     .small-12.columns
       #sandboxe.sandbox
+        #sandbox-e-pie.sub-sandbox
+        #sandbox-e-workarea-cluster.sub-sandbox
+        #sandbox-e-workarea-tree.sub-sandbox
   .row
     .small-12.columns
       #sandboxa.sandbox

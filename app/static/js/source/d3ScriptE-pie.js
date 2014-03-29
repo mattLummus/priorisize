@@ -38,7 +38,7 @@
 
 
   var data = [timeL, timeE, wkF, wkN, dT, dC, priF, priN];
-  var r = 300;
+  var r = 75;
 
   //red = #ed4747, yellow = #f0db58, green = #7ad86b, blue = #90d1e4
   var color = d3.scale.ordinal()
@@ -47,15 +47,15 @@
   var textSelect = d3.scale.ordinal()
     .range(['Time Left ('+left+')', 'Time Elapsed ('+elapsed+')', 'Workload ('+wkFill+')', '', 'Dependents ('+dependents+')', 'Dependencies ('+dependencies+')', 'Priority ('+priFill+')', '']);
 
-  var canvas = d3.select('#sandboxd').append('svg')
-    .attr('width', 1500)
-    .attr('height', 1500);
+  var canvas = d3.select('#sandbox-e-pie').append('svg')
+    .attr('width', 1200)
+    .attr('height', 300);
 
   var group = canvas.append('g')
-    .attr('transform', 'translate(300, 300)');
+    .attr('transform', 'translate(550, 150)');
 
   var arc = d3.svg.arc()
-    .innerRadius(200)
+    .innerRadius(50)
     .outerRadius(r);
 
   var pie = d3.layout.pie()
@@ -85,7 +85,7 @@
   arcs.append('text')
     .attr('transform', function(d){return 'translate(' +arc.centroid(d) + ')';})
     .attr('text-anchor', 'middle')
-    .attr('font-size', '1.2em')
+    .attr('font-size', '0.6em')
     .text(function(d){return textSelect(d.data);});
 
 })();
