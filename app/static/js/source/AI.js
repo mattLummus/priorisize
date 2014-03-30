@@ -8,25 +8,34 @@
 
   function initialize(){
     $(document).foundation();
-    //receiveData();
+    receiveData();
+    checkData();
+  }
+
+  function checkData(){
+    $.getJSON('/tasks/find', checkLog);
+  }
+
+  function checkLog(data){
+    console.log('checkData', data);
   }
 
   function receiveData(){
     var uid = $('#uid').val();
-    var url = '/tasks/user/'+uid;
+    //var url = '/tasks/user/'+uid;
+    var url = '/tasks/find';
     $.getJSON(url, logger);
   }
 
   function logger(data){
     console.log('data received', data);
     if(data.tasks.length>0){
-      //calculatePriority(data);
+      calculatePriority(data);
     }
     else{console.log('No Tasks Found');}
   }
 
 
-/*
   //CALCULATIONS
   //sends to sortColors(data)
   function calculatePriority(data){
@@ -50,6 +59,7 @@
       var sum = _.reduce(cwkArray, function(sum, num) {
         return sum + num;
       });
+      console.log('sum', sum);
       childWorkload = (sum / childQuantity);
 
       //should ideally slope upward (each additional depdendent is less impactful)
@@ -58,19 +68,31 @@
       else if(tempTask.importance===false){impFactor=0.9;}
       else{impFactor=1;}
 
-      adjustedWorkload = ((tempTask.workload*(3/4)) + (childWorkload*(1/4)));
+      if(childWorkload>0){adjustedWorkload = ((tempTask.workload*(3/4)) + (childWorkload*(1/4)));}
+      else{adjustedWorkload = tempTask.workload;}
+
       dependencyMultiplier = ((1+(childQuantity*0.01)) * dependencyFactor);
       totalWorkload = adjustedWorkload*dependencyMultiplier*impFactor;
 
       var currentDate = new Date();
-      var left = tempTask.endDate - currentDate;
-      var length = tempTask.endDate - tempTask.startDate;
+      currentDate = Date.parse(currentDate);
+      var left = Date.parse(tempTask.endDate) - currentDate;
+      console.log('left', left);
+      console.log('checkLength', tempTask.endDate);
+      var length = Date.parse(tempTask.endDate) - Date.parse(tempTask.startDate);
+      var tempLength = (((length/60)/60)/24);
+      console.log('tempLength', tempLength);
       urgency = ((left/length) * (1+(length/600)));
+      console.log('urgency', urgency);
+      console.log('adjustedWorkload', adjustedWorkload);
       urgencyValue = (adjustedWorkload / urgency);
+      console.log('urgencyValue', urgencyValue);
 
       //FIX THIS! write code when decided upon
       var finalAdjustments = 1;
-      priorityValue = (urgencyValue * finalAdjustments).toFixed(3);
+      priorityValue = urgencyValue * finalAdjustments;
+      //priorityValue = (urgencyValue * finalAdjustments).toFixed(3);
+      console.log('priorityValue', priorityValue);
 
       tempTask.priorityValue = priorityValue;
       newTasks.push(tempTask);
@@ -108,14 +130,16 @@
     var greenArray = [];
     var a, b, c;
     for(a=0; a<red; a++){
+      tasks[a].color = 'red';
       redArray.push(tasks[a]);
     }
     for(b=red; b<yellow; a++){
+      tasks[a].color = 'yellow';
       yellowArray.push(tasks[b]);
     }
     for(c=yellow; c<num; c++){
+      tasks[a].color = 'green';
       greenArray.push(tasks[c]);
-      console.log('green', greenArray);
     }
 
     var newData = {taskArray: [ {color:'red', tasks:redArray}, {color:'yellow', tasks:yellowArray}, {color:'green', tasks:greenArray} ]};
@@ -172,7 +196,6 @@
     }
   //end of append(data)
   }
-*/
 
 //end of document
 })();

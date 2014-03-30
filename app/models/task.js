@@ -15,7 +15,6 @@ function Task(task){
   this.workload = task.workload;
   this.importance = task.importance;
   this.endDate = task.endDate;
-  //need to fix this by adding a hidden input on create task form
   this.startDate = task.startDate || new Date();
   this.childGroup = task.childGroup;
   this.parentId = task.parentId;
