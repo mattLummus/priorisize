@@ -10,10 +10,20 @@
     $('#forms').hide();
     $('#dependencies').hide();
     $('.navForm').hide();
+    $('#sandbox-e-workarea-tree').hide();
     $('#regButton').click(toggleReg);
     $('#logButton').click(toggleLog);
     $('#toggle').click(toggleForms);
     $('#toggle2').click(toggleTree);
+    $('#toggle3').click(toggleMode);
+  }
+
+  function toggleMode(){
+    //$('#sandbox-e-workarea-tree').fadeToggle('slow', 'linear');
+    //$('#sandbox-e-workarea-cluster').fadeToggle('slow', 'linear');
+    $('#sandbox-e-workarea-tree').toggle();
+    $('#sandbox-e-workarea-cluster').toggle();
+    event.preventDefault();
   }
 
   function toggleTree(){

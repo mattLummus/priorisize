@@ -53,6 +53,7 @@
       .enter().append('circle')
       .attr('r', function(d) { return d.radius; })
       .style('fill', function(d) { return color(d.cluster); })
+      .on('click', click)
       .call(force.drag);
 
   function tick(e) {
@@ -115,6 +116,10 @@
         return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
       });
     };
+  }
+
+  function click(d){
+    console.log('clicked!', d);
   }
 
   //end of document
