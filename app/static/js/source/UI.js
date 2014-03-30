@@ -19,15 +19,15 @@
   }
 
   function toggleMode(){
-    //$('#sandbox-e-workarea-tree').fadeToggle('slow', 'linear');
-    //$('#sandbox-e-workarea-cluster').fadeToggle('slow', 'linear');
-    $('#sandbox-e-workarea-tree').toggle();
-    $('#sandbox-e-workarea-cluster').toggle();
+    $('#sandbox-e-workarea-tree').fadeToggle('slow', 'linear');
+    $('#sandbox-e-workarea-cluster').fadeToggle('slow', 'linear');
+    //$('#sandbox-e-workarea-tree').toggle();
+    //$('#sandbox-e-workarea-cluster').toggle();
     event.preventDefault();
   }
 
   function toggleTree(){
-    $('#dependencies').fadeToggle('slow', 'linear');
+    $('#dependencies').fadeToggle('fast', 'linear');
     event.preventDefault();
   }
 
@@ -42,7 +42,7 @@
   }
 
   function toggleForms(){
-    $('#forms').fadeToggle('slow', 'linear');
+    $('#forms').fadeToggle('fast', 'linear');
     event.preventDefault();
   }
 

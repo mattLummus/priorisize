@@ -12,12 +12,12 @@
 
   var w = 1200,
       h = 600,
-      r = 6;
+      r = 15;
       //fill = d3.scale.category20();
 
   var force = d3.layout.force()
-      .charge(-120)
-      .linkDistance(30)
+      .charge(-420)
+      .linkDistance(40)
       .size([w, h]);
 
   var svg = d3.select('#sandbox-e-workarea-tree').append('svg:svg')

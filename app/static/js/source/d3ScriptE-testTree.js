@@ -10,33 +10,32 @@
     $(document).foundation();
   }
 
-  var width = 1000,
-      height = 900,
-      root;
+  var w = 1200,
+      h = 600,
+      r = 6;
+      //fill = d3.scale.category20();
 
-  // PHYSICS
   var force = d3.layout.force()
-      .linkDistance(100)
       .charge(-120)
-      .gravity(.03)
-      .size([width, height])
+      .linkDistance(30)
+      .size([w, h])
       .on('tick', tick);
 
-  var svg = d3.select('#sandbox0').append('svg')
+  var svg = d3.select('#sandbox-e-workarea-tree').append('svg')
        //fixed size
-      .attr('width', width)
-      .attr('height', height);
+      .attr('width', w)
+      .attr('height', h);
 
   var link = svg.selectAll('.link'),
       node = svg.selectAll('.node');
 
   d3.json('tasks/graph', function(error, json) {
-    root = json;
+    r = json;
     update();
   });
 
   function update() {
-    var nodes = flatten(root),
+    var nodes = flatten(r),
         links = d3.layout.tree().links(nodes);
 
     // Restart the force layout.

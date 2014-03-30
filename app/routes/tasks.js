@@ -69,13 +69,13 @@ exports.graph = function(req, res){
 
 exports.graph2 = function(req, res){
   var data = {'nodes': [
-    {'name': 'd3'},
-    {'name': 'd3.svg'},
-    {'name': 'd3.svg.area'},
-    {'name': 'd3.svg.line'},
-    {'name': 'd3.scale'},
-    {'name': 'd3.scale.linear'},
-    {'name': 'd3.scale.ordinal'}
+    {'name': 'd3'},                 // 0  root
+    {'name': 'd3.svg'},             // 1  branch 1
+    {'name': 'd3.svg.area'},        // 2  branch 1.a
+    {'name': 'd3.svg.line'},        // 3  branch 1.b
+    {'name': 'd3.scale'},           // 4  branch 2
+    {'name': 'd3.scale.linear'},    // 5  branch 2.a
+    {'name': 'd3.scale.ordinal'}    // 6  branch 2.b
   ],
     'links': [
       {'source': 0, 'target': 1},
@@ -88,6 +88,9 @@ exports.graph2 = function(req, res){
   res.send(data);
 };
 
+exports.graphTest = function(req, res){
+  res.send({msg:'hello world'});
+};
 
 exports.getTaskById = function(req, res){
   Task.findById(req.params.id, function(team){
