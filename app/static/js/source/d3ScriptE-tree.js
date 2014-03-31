@@ -12,12 +12,12 @@
 
   var w = 1200,
       h = 600,
-      r = 15;
+      r = 25;
       //fill = d3.scale.category20();
 
   var force = d3.layout.force()
-      .charge(-420)
-      .linkDistance(40)
+      .charge(-820)
+      .linkDistance(60)
       .size([w, h]);
 
   var svg = d3.select('#sandbox-e-workarea-tree').append('svg:svg')
@@ -28,7 +28,7 @@
     var link = svg.selectAll('line')
         .data(json.links)
         .enter().append('svg:line')
-        .style('stroke', 'black');
+        .style('stroke', 'blue');
 
     var node = svg.selectAll('circle')
         .data(json.nodes)
@@ -48,7 +48,6 @@
         .start();
 
     function tick(e) {
-
       // Push sources up and targets down to form a weak tree.
       var k = 6 * e.alpha;
       json.links.forEach(function(d, i) {

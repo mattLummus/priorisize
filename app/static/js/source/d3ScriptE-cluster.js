@@ -27,9 +27,9 @@
       height = 600,
       padding = 2.5, // separation between same-color circles
       clusterPadding = 80, // separation between different-color circles
-      maxRadius = 30;
+      maxRadius = 50;
 
-  var n = 30, // total number of circles
+  var n = 10, // total number of circles
       m = 3; // number of distinct clusters
 
   //red = #ed4747, yellow = #f0db58, green = #7ad86b, blue = #90d1e4
@@ -44,7 +44,7 @@
     var i = Math.floor(Math.random() * m),
         r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius;
         //r = Math.floor(Math.random()*maxRadius),
-    if(r<10){r = 10;}
+    if(r<20){r = 20;}
     var d = {cluster: i, radius: r, dataTest:'data here'};
     if (!clusters[i] || (r > clusters[i].radius)){clusters[i] = d;}
     return d;
