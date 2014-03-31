@@ -90,13 +90,17 @@ exports.graph = function(req, res){
 
 exports.graph2 = function(req, res){
   var data = {'nodes': [
-    {'name': 'd3'},                 // 0  root
-    {'name': 'd3.svg'},             // 1  branch 1
-    {'name': 'd3.svg.area'},        // 2  branch 1.a
-    {'name': 'd3.svg.line'},        // 3  branch 1.b
-    {'name': 'd3.scale'},           // 4  branch 2
-    {'name': 'd3.scale.linear'},    // 5  branch 2.a
-    {'name': 'd3.scale.ordinal'}    // 6  branch 2.b
+    {'name': 'root', 'color':'#f0db58'},                 // 0  root
+    {'name': 'Testing', 'color':'#ed4747'},             // 1  branch 1
+    {'name': 'Unit Tests', 'color':'#ed4747'},        // 2  branch 1.a
+    {'name': 'Acceptance', 'color':'#f0db58'},        // 3  branch 1.b
+    {'name': 'Front End', 'color':'#7ad86b'},           // 4  branch 2
+    {'name': 'CSS', 'color':'#7ad86b'},            // 5  branch 2.a
+    {'name': 'jQuery', 'color':'#f0db58'},           // 6  branch 2.b
+    {'name': 'D3', 'color':'#7ad86b'},            // 7  branch 2.c
+    {'name': 'Back End', 'color':'#f0db58'}, //8 3.a
+    {'name': 'Routes', 'color':'#7ad86b'}, //9 3.b
+    {'name': 'Models', 'color':'#ed4747'} //10, 3.c
   ],
     'links': [
       {'source': 0, 'target': 1},
@@ -104,10 +108,26 @@ exports.graph2 = function(req, res){
       {'source': 1, 'target': 3},
       {'source': 0, 'target': 4},
       {'source': 4, 'target': 5},
-      {'source': 4, 'target': 6}
+      {'source': 4, 'target': 6},
+      {'source': 4, 'target': 7},
+      {'source': 0, 'target': 8},
+      {'source': 8, 'target': 9},
+      {'source': 8, 'target': 10}
     ]};
   res.send(data);
 };
+
+/*
+exports.graph3 = function(req, res){
+  var data = {'nodes':[
+    {'name': 'Record Album', 'color': 'green', 'size': '4.5', '_id': }
+    {'name': 'Drums', 'color': 'red', 'size': '3.5', '_id': }
+    {'name': , 'color': , 'size': , '_id': }
+    {'name': , 'color': , 'size': , '_id': }
+    {'name': , 'color': , 'size': , '_id': }
+}
+*/
+
 
 exports.getTaskById = function(req, res){
   Task.findById(req.params.id, function(team){
@@ -124,6 +144,6 @@ exports.getTaskByName = function(req, res){
 exports.insert = function(req, res){
   var task = new Task(req.body);
   task.insert(function(err, record){
-    res.send(record);
+    res.redirect('/');
   });
 };

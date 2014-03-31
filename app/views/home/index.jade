@@ -4,8 +4,7 @@ block content
   h1 priorisize <span id='beta'> Pre-Alpha</span>
   button.small.radius#toggle Tasks
   button.small.radius#toggle2 Tree
-  button.small.radius#toggle3 Switch
-  button.small.radius.red#logout(href='/logout', action='post') Logout
+  button.small.radius.red#toggle3 Switch
   #forms
     .row
       .small-6.columns
@@ -32,7 +31,7 @@ block content
                 input#endDate(type='date', name='endDate', required=true)
               .small-3.columns
                 label Branch
-                select#branch(name='branch')
+                select#branch.taskSelector(name='parentId')
                   option(value='root') Root
             .row
               .small-8.columns
@@ -41,35 +40,38 @@ block content
               .small-4.columns
                 button Submit
       .small-6.columns
-        form#myTasks
+        form#myTasks(action='/task/create', method='post')
           fieldset
             legend Edit Task
             .row
               .small-12.columns
                 #editTaskHeader.formHeader
+              .small-6.columns
+                select#selectTaskEdit.taskSelector
+                  option Select Task
             .row
               .small-3.columns
                 label Workload
-                select#workload(name='workload')
+                select#workloadEdit(name='workload')
                   option(value=1) Low
                   option(value=2) Medium
                   option(value=3) High
               .small-3.columns
                 label Important?
-                select#importance(name='importance')
+                select#importanceEdit(name='importance')
                   option(value='true') True
                   option(value='false') False
               .small-3.columns
                 label End Date
-                input#endDate(type='date', name='endDate', required=true)
+                input#endDateEdit(type='date', name='endDate', required=true)
               .small-3.columns
                 label Branch
-                select#branch(name='branch')
-                  option Root
+                select#branchEdit.taskSelector(name='parentId')
+                  option(value='root') Root
               .small-3.columns
             .row
               .small-8.columns
-                input#description(type='text', placeholder='description', name='description')
+                input#descriptionEdit(type='text', placeholder='description', name='description')
                 input#user(type='hidden')
               .small-4.columns
                 button Submit
@@ -82,16 +84,19 @@ block content
             .row
               .small-12.columns
                 #editTreeHeader.formHeader
+              .small-6.columns
+                select#selectTaskTree.taskSelector
+                  option Select Task
             .row
               .small-3.columns
                 label Add Dependency
-                select#aCie(name='aCie')
+                select#aCie.taskSelector(name='aCie')
               .small-3.columns
                 label Remove Dependency
                 select#rCie(name='rCie')
               .small-3.columns
                 label Add Dependent
-                select#aEnt(name='aEnt')
+                select#aEnt.taskSelector(name='aEnt')
               .small-3.columns
                 label Remove Dependent
                 select#rEnt(name='rEnt')
@@ -118,15 +123,6 @@ block content
         #sandbox-e-pie.sub-sandbox
         #sandbox-e-workarea-cluster.sub-sandbox
         #sandbox-e-workarea-tree.sub-sandbox
-  .row
-    .small-12.columns
-      #sandbox0.sandbox
-  .row
-    .small-12.columns
-      #sandboxa.sandbox
-  .row
-    .small-12.columns
-      #sandboxb.sandbox
 
   if user
     input#uid(value= userId)

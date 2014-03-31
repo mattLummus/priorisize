@@ -10,12 +10,72 @@
     $('#forms').hide();
     $('#dependencies').hide();
     $('.navForm').hide();
-    $('#sandbox-e-workarea-tree').hide();
+    $('#sandbox-e-workarea-cluster').hide();
     $('#regButton').click(toggleReg);
     $('#logButton').click(toggleLog);
     $('#toggle').click(toggleForms);
     $('#toggle2').click(toggleTree);
     $('#toggle3').click(toggleMode);
+    getTasks();
+    $('#selectTaskEdit').on('change', changeEdit);
+    $('#selectTaskTree').on('change', changeTree);
+  }
+
+  function changeEdit(){
+    var $temp = $('#selectTaskEdit').val();
+    console.log('changetask', $temp);
+    $.getJSON('/task/'+$temp, descEdit);
+  }
+
+  function changeTree(){
+    var $temp = $('#selectTaskTree').val();
+    console.log('changetask', $temp);
+    $.getJSON('/task/'+$temp, treeData);
+  }
+
+  function treeData(data){
+    console.log('treeData', data);
+    for(var c=0; c<data.dependencies.length; c++){
+      $.getJSON('/task/'+data.dependencies[c], function(d){
+        var $temp = $('<option>');
+        $temp.val(d._id);
+        $temp.text(d.description);
+        $('#rCie').append($temp);
+      });
+    }
+    for(var e=0; e<data.dependents.length; e++){
+      $.getJSON('/task/'+data.dependents[e], function(da){
+        var $temp = $('<option>');
+        $temp.val(da._id);
+        $temp.text(da.description);
+        $('#rEnt').append($temp);
+      });
+    }
+  }
+
+  function descEdit(data){
+    $('#descriptionEdit').val(data.description);
+    $('#workloadEdit').val(data.workload);
+    $('#importanceEdit').val(data.importance);
+    $('#endDateEdit').val(data.endDate);
+    $('#branchEdit').val(data.parentId);
+  }
+
+  function getTasks(){
+    $.getJSON('/tasks/find', taskRouter);
+  }
+
+  function taskRouter(data){
+    appendTasks(data);
+  }
+
+  function appendTasks(data){
+    for(var b=0; b<data.tasks.length; b++){
+      var $task = $('<option>');
+      $task.text(data.tasks[b].description);
+      $task.val(data.tasks[b]._id);
+      $('.taskSelector').append($task);
+    }
   }
 
   function toggleMode(){

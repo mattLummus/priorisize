@@ -37,7 +37,7 @@
         .attr('r', r - .75)
         //.style('fill', function(d) { return fill(d.group); })
         //.style('stroke', function(d) { return d3.rgb(fill(d.group)).darker(); })
-        .style('fill', 'red')
+        .style('fill', function(d){return d.color;})
         .on('click', click)
         .call(force.drag);
 
@@ -69,6 +69,8 @@
   function click(d){
     console.log('clicked!', d);
     $('.formHeader').text(d.name);
+    $('#selectTaskEdit').val(d._id);
+    $('#selectTaskTree').val(d._id);
   }
 
 })();

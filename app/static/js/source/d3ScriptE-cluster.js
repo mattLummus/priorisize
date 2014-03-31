@@ -9,6 +9,16 @@
   function initialize(){
     $(document).foundation();
     clusterTest();
+    init();
+  }
+
+  function init(){
+    $.getJSON('/tasks/find', init2);
+  }
+
+  function init2(data){
+    var num = data.tasks.length;
+    console.log(num);
   }
 
   var nodeTemp = [];
@@ -32,9 +42,10 @@
   // i = which cluster, r = radius, d = data
   var nodes = d3.range(n).map(function() {
     var i = Math.floor(Math.random() * m),
-        r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
+        r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius;
         //r = Math.floor(Math.random()*maxRadius),
-        d = {cluster: i, radius: r, dataTest:'data here'};
+    if(r<10){r = 10;}
+    var d = {cluster: i, radius: r, dataTest:'data here'};
     if (!clusters[i] || (r > clusters[i].radius)){clusters[i] = d;}
     return d;
   });
