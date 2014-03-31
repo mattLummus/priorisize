@@ -13,6 +13,9 @@ block content
           fieldset
             legend Add Task
             .row
+              .small-12.columns
+                #addTaskHeader.formHeader
+            .row
               .small-3.columns
                 label Workload
                 select#workload(name='workload')
@@ -41,6 +44,9 @@ block content
         form#myTasks
           fieldset
             legend Edit Task
+            .row
+              .small-12.columns
+                #editTaskHeader.formHeader
             .row
               .small-3.columns
                 label Workload
@@ -73,6 +79,9 @@ block content
         form#editTree
           fieldset
             legend Edit Tree
+            .row
+              .small-12.columns
+                #editTreeHeader.formHeader
             .row
               .small-3.columns
                 label Add Dependency

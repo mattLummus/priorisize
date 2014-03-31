@@ -27,7 +27,7 @@ function load(app, fn){
   app.get('/tasks/find', d, tasks.index);
   app.get('/tasks/graph', d, tasks.graph);
   app.get('/tasks/graph2', d, tasks.graph2);
-  app.get('/tasks/graph3', d, tasks.graphTest);
+  app.get('/tasks/clusterTest', d, tasks.clusterTest);
   console.log('Routes Loaded');
   fn();
 }

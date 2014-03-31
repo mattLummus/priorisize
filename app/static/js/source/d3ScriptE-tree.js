@@ -33,10 +33,12 @@
     var node = svg.selectAll('circle')
         .data(json.nodes)
         .enter().append('svg:circle')
+        .attr('name', function(d){return d.name;})
         .attr('r', r - .75)
         //.style('fill', function(d) { return fill(d.group); })
         //.style('stroke', function(d) { return d3.rgb(fill(d.group)).darker(); })
         .style('fill', 'red')
+        .on('click', click)
         .call(force.drag);
 
     force
@@ -63,4 +65,10 @@
           .attr('y2', function(d) { return d.target.y; });
     }
   });
+
+  function click(d){
+    console.log('clicked!', d);
+    $('.formHeader').text(d.name);
+  }
+
 })();

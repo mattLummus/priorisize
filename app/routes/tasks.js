@@ -11,8 +11,29 @@ exports.index = function(req, res){
   });
 };
 
+//sends two versions of data - one for tree layout and one for cluster layout
+exports.clusterTest = function(req, res){
+  Task.findAll(function(tasks){
+    if(tasks.length>0){
+      var taskArray = [];
+      for(var i=0; i<tasks.length; i++){
+        var data = tasks[i];
+        var task = {};
+        var colors = ['green', 'yellow', 'red'];
+        task.name = data.description;
+        task.color = colors[data.workload-1];
+        task.size = data.workload;
+        task._id = data._id;
+        taskArray.push(task);
+      }
+      res.send({tasks:taskArray});
+    }
+    else{res.send({msg:'no tasks'});}
+  });
+};
+
 exports.graph = function(req, res){
-  var data = {'name':'Project', 'children':[
+  var data = {'name':'Root', 'children':[
     //testing
     {'name':'Testing', 'color':'red', 'size':193800, 'children':[
       {'name':'Unit', 'color':'red', 'children':[
@@ -86,10 +107,6 @@ exports.graph2 = function(req, res){
       {'source': 4, 'target': 6}
     ]};
   res.send(data);
-};
-
-exports.graphTest = function(req, res){
-  res.send({msg:'hello world'});
 };
 
 exports.getTaskById = function(req, res){

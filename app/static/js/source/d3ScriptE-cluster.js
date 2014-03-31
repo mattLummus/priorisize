@@ -8,7 +8,10 @@
 
   function initialize(){
     $(document).foundation();
+    clusterTest();
   }
+
+  var nodeTemp = [];
 
   var width = 1200,
       height = 600,
@@ -31,11 +34,47 @@
     var i = Math.floor(Math.random() * m),
         r = Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius,
         //r = Math.floor(Math.random()*maxRadius),
-        d = {cluster: i, radius: r};
+        d = {cluster: i, radius: r, dataTest:'data here'};
     if (!clusters[i] || (r > clusters[i].radius)){clusters[i] = d;}
     return d;
   });
+  console.log('nodesAfter', nodes);
 
+  //var nodesTest = d3.json('tasks/clusterTest', function(error, json) {
+  function clusterTest(){
+    $.getJSON('tasks/clusterTest', function(data){
+      console.log('clusterTest', data);
+      createNodes(data);
+    });
+  }
+
+  function createNodes(data){
+    var tasks = data.tasks;
+    console.log('cn tasks', tasks);
+    for(var a=0; a<tasks.length; a++){
+      var i;
+      switch(tasks[a].color){
+        case 'green':
+          i = 0;
+          break;
+        case 'yellow':
+          i = 1;
+          break;
+        case 'red':
+          i = 2;
+          break;
+        default:
+      }
+      var r = tasks[a].size;
+      var d = {cluster:i, radius:r, _id:tasks[a]._id, color:tasks[a].color, name:tasks[a].name};
+      console.log('d', d);
+      if (!clusters[i] || (r > clusters[i].radius)){clusters[i] = d;}
+      nodeTemp.push(d);
+    }
+    console.log('nodeTemp', nodeTemp);
+  }
+
+  console.log('nodes', nodes);
   var force = d3.layout.force()
       .nodes(nodes)
       .size([width, height])
@@ -51,6 +90,7 @@
   var circle = svg.selectAll('circle')
       .data(nodes)
       .enter().append('circle')
+      .attr('dataTest', function(d){return d.dataTest;})
       .attr('r', function(d) { return d.radius; })
       .style('fill', function(d) { return color(d.cluster); })
       .on('click', click)
@@ -120,6 +160,7 @@
 
   function click(d){
     console.log('clicked!', d);
+    $('.formHeader').text(d.dataTest);
   }
 
   //end of document

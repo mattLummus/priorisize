@@ -30,6 +30,7 @@
     //priority
     var priFill = 15;
     var priNone = maxPri - priFill;
+
     //adjusted
     var timeE = 25*(elapsed/totalTime);
     var timeL = 25*(left/totalTime);
