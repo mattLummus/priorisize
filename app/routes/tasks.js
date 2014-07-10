@@ -130,14 +130,14 @@ exports.graph3 = function(req, res){
 
 
 exports.getTaskById = function(req, res){
-  Task.findById(req.params.id, function(team){
-    res.send(team);
+  Task.findById(req.params.id, function(task){
+    res.send(task);
   });
 };
 
 exports.getTaskByName = function(req, res){
-  Task.findByName(req.params.name, function(team){
-    res.send(team);
+  Task.findByName(req.params.name, function(task){
+    res.send(task);
   });
 };
 

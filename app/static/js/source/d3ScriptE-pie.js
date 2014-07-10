@@ -54,7 +54,7 @@
       .range(['#ed4747', '#90d1e4', '#f0db58', 'white', '#ed4747', '#7ad86b',  '#7ad86b', 'white']);
 
     var textSelect = d3.scale.ordinal()
-      .range(['Time Left ('+left+')', 'Time Elapsed ('+elapsed+')', 'Workload ('+wkFill+')', '', 'Dependents ('+dependents+')', 'Dependencies ('+dependencies+')', 'Priority ('+priFill+')', '']);
+      .range(['', 'Time Elapsed ('+elapsed+')', 'Workload ('+wkFill+')', '', 'Dependents ('+dependents+')', 'Dependencies ('+dependencies+')', 'Priority ('+priFill+')', '']);
 
     var canvas = d3.select('#sandbox-e-pie').append('svg')
       .attr('width', 1200)
